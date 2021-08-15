@@ -3,17 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\MainRequest;
+// use Illuminate\Http\Response;
 
-class LoginController extends Controller
+class MainController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(MainRequest $request)
     {
-        //
+        $validated=$request->validated();
+        return response()->view('main',['name'=>$request->item_name],200);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function test($insa)
+    {   
+        if($insa=="한국어"){
+            return [false,"안녕"];
+        }else{
+            return [true,"hello"];
+        }
     }
 
     /**
